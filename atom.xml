@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://pazyork.github.io</id>
     <title>PPP的博客</title>
-    <updated>2019-09-08T14:30:09.422Z</updated>
+    <updated>2019-09-08T15:36:04.641Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://pazyork.github.io"/>
     <link rel="self" href="https://pazyork.github.io/atom.xml"/>
@@ -10,6 +10,32 @@
     <logo>https://pazyork.github.io/images/avatar.png</logo>
     <icon>https://pazyork.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[前后端分离中的Rest&Restful架构  ]]></title>
+        <id>https://pazyork.github.io/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou</id>
+        <link href="https://pazyork.github.io/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou">
+        </link>
+        <updated>2019-09-08T14:31:43.000Z</updated>
+        <summary type="html"><![CDATA[<p><em>----最近在接触spring cloud的时候，经常会看见Rest&amp;Restful的字眼，又对这两个词完全没有印象</em></p>
+]]></summary>
+        <content type="html"><![CDATA[<p><em>----最近在接触spring cloud的时候，经常会看见Rest&amp;Restful的字眼，又对这两个词完全没有印象</em></p>
+<!--more-->
+<h3 id="传统api接口">传统API接口</h3>
+<p>以我的观点，应用是以数据为逻辑中心的，对于数据的操作不外乎增删改查四种。http协议针对这四种操作分别提供了POST、DELETE，PUT、GET四种方法，简单优雅。但是我们以往在写服务端API的时候，往往会用GET和POST解决一切，背离http协议设计的初衷。更窒息的是，混乱还不仅仅如此。<br>
+URL代表着统一资源唯一定位符，是名词性质的，不应该带有任何动作。但是由于对http协议的错误理解，我们往往会在其中混入动词。<br>
+比如：当我们对学生对象进行删除操作时可能会有以下写法：</p>
+<pre><code class="language-html">	http://***/student/delete?id=xxx
+	http://***/student/deletebyid/{id}
+	http://***/student/{id}/delete
+</code></pre>
+<p>这仅仅是简单的删除的操作，却有了如此多的书写风格，在规范严格的公司里或许还能依靠规范实现风格的统一。但是当人员流动加大，服务提供商变多时，对API的调用则显得混乱了</p>
+<h3 id="关于rest和restful的概述">关于Rest和Restful的概述</h3>
+<p><strong>Rest</strong>的全程是Representational State Transfer，表征性状态转移，是一组架构约束条件和原则。我认为可以理解成一种规范<br>
+满足Rest规范的架构即可被称作<strong>Restful架构</strong></p>
+<h3 id="rest的应用">Rest的应用</h3>
+<p><img src="https://pazyork.github.io/post-images/1567956839357.jpg" alt="去年冬，于长春"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[以往]]></title>
         <id>https://pazyork.github.io/post/yi-wang</id>

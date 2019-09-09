@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://paz.coding.me/</id>
+    <id>https://paz.coding.me/pazBlog</id>
     <title>PPP的博客</title>
-    <updated>2019-09-09T04:35:50.070Z</updated>
+    <updated>2019-09-09T04:36:27.848Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://paz.coding.me/"/>
-    <link rel="self" href="https://paz.coding.me//atom.xml"/>
+    <link rel="alternate" href="https://paz.coding.me/pazBlog"/>
+    <link rel="self" href="https://paz.coding.me/pazBlog/atom.xml"/>
     <subtitle>做难事，必有所得</subtitle>
-    <logo>https://paz.coding.me//images/avatar.png</logo>
-    <icon>https://paz.coding.me//favicon.ico</icon>
+    <logo>https://paz.coding.me/pazBlog/images/avatar.png</logo>
+    <icon>https://paz.coding.me/pazBlog/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
         <title type="html"><![CDATA[前后端分离中的Rest&Restful架构  ]]></title>
-        <id>https://paz.coding.me//post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou</id>
-        <link href="https://paz.coding.me//post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou">
+        <id>https://paz.coding.me/pazBlog/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou</id>
+        <link href="https://paz.coding.me/pazBlog/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou">
         </link>
         <updated>2019-09-08T14:31:43.000Z</updated>
         <summary type="html"><![CDATA[<p><em>----最近在接触spring cloud的时候，经常会看见Rest&amp;Restful的字眼，又对这两个词完全没有印象</em></p>
@@ -33,13 +33,13 @@ URL代表着统一资源唯一定位符，是名词性质的，不应该带有�
 <p><strong>Rest</strong>的全程是Representational State Transfer，表征性状态转移，是一组架构约束条件和原则。我认为可以理解成一种规范<br>
 满足Rest规范的架构即可被称作<strong>Restful架构</strong></p>
 <h3 id="rest的应用">Rest的应用</h3>
-<p><img src="https://paz.coding.me//post-images/1567956839357.jpg" alt="去年冬，于长春"></p>
+<p><img src="https://paz.coding.me/pazBlog/post-images/1567956839357.jpg" alt="去年冬，于长春"></p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[以往]]></title>
-        <id>https://paz.coding.me//post/yi-wang</id>
-        <link href="https://paz.coding.me//post/yi-wang">
+        <id>https://paz.coding.me/pazBlog/post/yi-wang</id>
+        <link href="https://paz.coding.me/pazBlog/post/yi-wang">
         </link>
         <updated>2019-09-08T11:56:47.000Z</updated>
         <summary type="html"><![CDATA[<p>在此留下以前博客的地址：<br>

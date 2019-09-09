@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-09T05:19:37.760Z</updated>
+    <updated>2019-09-09T11:01:50.335Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -41,6 +41,67 @@ URL代表着统一资源唯一定位符，是名词性质的，不应该带有�
 <p>这个含义是服务器不需要知道客户端现在处于什么状态，客户端也不必知道服务器是什么状态。这意味着即使没看到以前的消息，也不影响双方对本次通信的理解。<br>
 在web项目里可以理解为，服务端没有保存任何浏览器的状态信息，浏览器发送的任何请求必须要确保足够服务端使用。<br>
 比如说：登陆状态的保存，不能依靠服务器去记忆每个浏览器对应的用户而应该用加密的方式把用户签名保存在浏览器中，在向服务器发送请求时，附加上用户签名，让服务器校验。</p>
+<ul>
+<li>
+<h4 id="面向资源对象">面向资源/对象</h4>
+</li>
+</ul>
+<p>符合Rest规范的API，在前后端通信时，URI仅仅用于标记资源。仅仅作为名词形式。<br>
+比如：</p>
+<pre><code class="language-html">	在A市下新增C企业：PUSH IP:Port/citys/A/companys/C
+	删除A市下的C企业:   DELETE IP:Port/citys/A/Companys/C
+	更改A市C企业的名字为B：PUT IP:Port/citys/A/Companys/C/name/B
+	查询A市下C企业的相关信息：GET IP:Port/citys/A/Companys/C
+</code></pre>
+<h3 id="rest的组成部分">Rest的组成部分</h3>
+<h4 id="请求">请求：</h4>
+<ol>
+<li>http动词：表示对资源的操作</li>
+<li>头部请求信息：指定接收的MIME类型 如：text/css、text/html</li>
+<li>资源路径: 寻找资源的路径</li>
+<li>包含数据的的消息主体</li>
+</ol>
+<h4 id="回复">回复：</h4>
+<ol>
+<li>内容</li>
+<li>content-type响应的数据类型</li>
+<li>响应状态码（文末会列出基本的状态码）</li>
+</ol>
+<h3 id="现在存在的问题">现在存在的问题？</h3>
+<ol>
+<li>为什么Put、Delete方法没有人用？</li>
+</ol>
+<ul>
+<li>答：好像是出于安全考虑，但是我个人认为是程序员们都偷懒了。</li>
+</ul>
+<ol start="2">
+<li>幂等什么？</li>
+</ol>
+<ul>
+<li>指不管调用多少次HTTP方法，结果都是相同的。</li>
+</ul>
+<ol start="3">
+<li>springboot中不支持这些方法怎么办？</li>
+</ol>
+<ul>
+<li></li>
+</ul>
+<h3 id="参考">参考：</h3>
+<p><em>感谢以下文章的作者：</em></p>
+<p><a href="https://blog.csdn.net/qq_21383435/article/details/80032375#rest-%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81">REST，以及RESTful的讲解</a></p>
+<p><a href="https://www.jianshu.com/p/c5c83872dad2">你真的了解REST吗？</a></p>
+<p><a href="https://www.jianshu.com/p/21622d81ab26">HTTP与RESTful</a></p>
+<p><a href="https://www.cnblogs.com/fu-yong/p/9052623.html">RESTful规范</a></p>
+<p><a href="https://www.jianshu.com/p/9d46a730284e">什么是幂等性</a></p>
+<p><a href="https://www.cnblogs.com/wei-hj/p/7859707.html">标准Http协议支持六种请求方法</a></p>
+<h3 id="附">附：</h3>
+<h4 id="http状态码分类">HTTP状态码分类</h4>
+<p>分类	分类描述<br>
+1**	信息，服务器收到请求，需要请求者继续执行操作<br>
+2**	成功，操作被成功接收并处理<br>
+3**	重定向，需要进一步的操作以完成请求<br>
+4**	客户端错误，请求包含语法错误或无法完成请求<br>
+5**	服务器错误，服务器在处理请求的过程中发生了错误</p>
 ]]></content>
     </entry>
     <entry>

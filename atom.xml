@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-10T01:56:38.936Z</updated>
+    <updated>2019-09-10T15:59:18.820Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -10,6 +10,94 @@
     <logo>https://paz.coding.me/images/avatar.png</logo>
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Cookie 简单使用示范]]></title>
+        <id>https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan</id>
+        <link href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
+        </link>
+        <updated>2019-09-10T15:54:43.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="先贴上代码明天再写博客">先贴上代码，明天再写博客</h1>
+<pre><code class="language-java">@Controller
+public class MainController {
+    private static final String TAG=&quot;MainController&quot;;
+
+    @RequestMapping(&quot;/&quot;)
+    public String index(){
+        return &quot;index&quot;;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = &quot;/cookies/{key}&quot;)
+    public String getCookies(HttpServletRequest request, 
+		@PathVariable String key){
+        String result=&quot;未获取到sessionID&quot;;
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null){
+            for (Cookie cookie:cookies){
+                if (&quot;sessionID&quot;.equals(cookie.getName())){
+                    result = &quot;sessionID:&quot; + cookie.getValue();
+                }
+            }
+        }
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value = &quot;/cookies&quot;, method = RequestMethod.POST)
+    public String setCookies(HttpServletResponse response) {
+        String result = &quot;服务器出现错误&quot;;
+        response.setStatus(500);
+        try{
+            Cookie cookie = new Cookie(&quot;sessionID&quot;,&quot;范鹏程&quot;);
+            response.addCookie(cookie);
+            response.setStatus(200);
+            result = &quot;cookie设置完成&quot;;
+        }catch (Exception e){
+            System.err.println(TAG+&quot; :发生错误&quot;);
+            System.err.println(e.getMessage());
+        }
+        return result;
+    }
+}
+
+</code></pre>
+<pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
+function setCookie() {
+    $.ajax({
+        url:&quot;/cookies&quot;,
+        type:&quot;POST&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+
+//向后台服务器发送字符串的同时获得cookie
+function sendWithCookie() {
+    $.ajax({
+        url:&quot;/cookies/sessionID&quot;,
+        type:&quot;GET&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;cookie学习&lt;/title&gt;
+    &lt;script src=&quot;/static/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/static/index.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;button onclick=&quot;setCookie()&quot;&gt;设置cookie&lt;/button&gt;
+&lt;button onclick=&quot;sendWithCookie()&quot;&gt;发送带cookie请求&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[前后端分离中的Rest&Restful架构]]></title>
         <id>https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou</id>

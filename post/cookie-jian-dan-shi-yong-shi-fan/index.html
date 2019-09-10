@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | PPP的博客</title>
+<title>Cookie 简单使用示范 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
 <link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1568131139054">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -83,11 +83,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Cookie 简单使用示范
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2019-09-10
               </span>
               <span>
                 1 min read
@@ -97,16 +97,107 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>但愿人长久，千里共婵娟</p>
+                <h1 id="先贴上代码明天再写博客">先贴上代码，明天再写博客</h1>
+<pre><code class="language-java">@Controller
+public class MainController {
+    private static final String TAG=&quot;MainController&quot;;
+
+    @RequestMapping(&quot;/&quot;)
+    public String index(){
+        return &quot;index&quot;;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = &quot;/cookies/{key}&quot;)
+    public String getCookies(HttpServletRequest request, 
+		@PathVariable String key){
+        String result=&quot;未获取到sessionID&quot;;
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null){
+            for (Cookie cookie:cookies){
+                if (&quot;sessionID&quot;.equals(cookie.getName())){
+                    result = &quot;sessionID:&quot; + cookie.getValue();
+                }
+            }
+        }
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value = &quot;/cookies&quot;, method = RequestMethod.POST)
+    public String setCookies(HttpServletResponse response) {
+        String result = &quot;服务器出现错误&quot;;
+        response.setStatus(500);
+        try{
+            Cookie cookie = new Cookie(&quot;sessionID&quot;,&quot;范鹏程&quot;);
+            response.addCookie(cookie);
+            response.setStatus(200);
+            result = &quot;cookie设置完成&quot;;
+        }catch (Exception e){
+            System.err.println(TAG+&quot; :发生错误&quot;);
+            System.err.println(e.getMessage());
+        }
+        return result;
+    }
+}
+
+</code></pre>
+<pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
+function setCookie() {
+    $.ajax({
+        url:&quot;/cookies&quot;,
+        type:&quot;POST&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+
+//向后台服务器发送字符串的同时获得cookie
+function sendWithCookie() {
+    $.ajax({
+        url:&quot;/cookies/sessionID&quot;,
+        type:&quot;GET&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;cookie学习&lt;/title&gt;
+    &lt;script src=&quot;/static/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/static/index.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;button onclick=&quot;setCookie()&quot;&gt;设置cookie&lt;/button&gt;
+&lt;button onclick=&quot;sendWithCookie()&quot;&gt;发送带cookie请求&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%85%88%E8%B4%B4%E4%B8%8A%E4%BB%A3%E7%A0%81%E6%98%8E%E5%A4%A9%E5%86%8D%E5%86%99%E5%8D%9A%E5%AE%A2">先贴上代码，明天再写博客</a></li>
+</ul>
+
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou">
+              <h3 class="post-title">
+                前后端分离中的Rest&amp;Restful架构
+              </h3>
+            </a>
+          </div>
         
 
         

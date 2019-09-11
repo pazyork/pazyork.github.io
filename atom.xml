@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T05:06:59.671Z</updated>
+    <updated>2019-09-11T05:08:06.102Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -20,9 +20,9 @@
 ]]></summary>
         <content type="html"><![CDATA[<p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
 <!-- more -->
-<h2 id="简介">简介</h2>
+<h3 id="简介">简介</h3>
 <p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。<strong>网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息</strong>。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户身份的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会自动带上此cookie。</p>
-<h2 id="分类">分类</h2>
+<h3 id="分类">分类</h3>
 <h4 id="1-存储位置">1. 存储位置</h4>
 <ul>
 <li><strong>内存</strong>：存储于内存中的cookie，当浏览器关闭时便会丢失。</li>
@@ -46,7 +46,7 @@
 <li>name：键</li>
 <li>value：值</li>
 </ul>
-<h2 id="上手">上手</h2>
+<h3 id="上手">上手</h3>
 <h4 id="使用idea建立springboot项目">使用idea建立springboot项目</h4>
 <p>一路点下去即可：<br>
 <img src="https://paz.coding.me/post-images/1568171060424.png" alt=""></p>
@@ -174,7 +174,7 @@ public class MainController {
 <center>可以看到浏览器中已经保存了cookie</center>
 <p><img src="https://paz.coding.me/post-images/1568177627756.png" alt=""></p>
 <center>后台也拿到了cookie，并作为返回值，返回给了前台</center>
-<h2 id="参考感谢">参考&amp;感谢</h2>
+<h3 id="参考感谢">参考&amp;感谢</h3>
 <p><a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">cookie属性及有效期的设置</a></p>
 <p><a href="https://www.cnblogs.com/bq-med/p/8603664.html">Http协议中Cookie详细介绍</a></p>
 <p><a href="https://www.cnblogs.com/SiriYang/p/10680483.html">Springboot使用Cookie，生成cookie，获取cookie信息（注解与非注解方式）</a></p>

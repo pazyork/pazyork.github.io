@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T03:14:57.790Z</updated>
+    <updated>2019-09-11T04:54:51.438Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -88,7 +88,7 @@ spring.mvc.static-path-pattern=/static/**
 </code></pre>
 <ol start="4">
 <li><strong>建立index.html和index.js文件</strong><br>
-路径为：<br>
+项目目录为：<br>
 <img src="https://paz.coding.me/post-images/1568171689524.png" alt=""></li>
 </ol>
 <pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
@@ -175,8 +175,14 @@ public class MainController {
         return result;
     }
 }
-
 </code></pre>
+<h2 id="测试">测试</h2>
+<p><img src="https://paz.coding.me/post-images/1568177243936.png" alt=""></p>
+<center>设置cookie</center>
+<p><img src="https://paz.coding.me/post-images/1568177455911.png" alt=""></p>
+<center>可以看到浏览器中已经保存了cookie</center>
+<p><img src="https://paz.coding.me/post-images/1568177627756.png" alt=""></p>
+<center>后台也拿到了cookie，并作为返回值，返回给了前台</center>
 ]]></content>
     </entry>
     <entry>

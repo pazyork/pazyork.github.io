@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T05:01:10.314Z</updated>
+    <updated>2019-09-11T05:03:22.043Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -21,7 +21,7 @@
         <content type="html"><![CDATA[<p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
 <!-- more -->
 <h2 id="简介">简介</h2>
-<p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。由于某一网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户信息的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会带上此cookie。</p>
+<p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。<strong>网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息</strong>。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户身份的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会自动带上此cookie。</p>
 <h2 id="分类">分类</h2>
 <h4 id="1-存储位置">1. 存储位置</h4>
 <ul>

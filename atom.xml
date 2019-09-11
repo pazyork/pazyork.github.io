@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T03:02:27.033Z</updated>
+    <updated>2019-09-11T03:14:57.790Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -16,9 +16,9 @@
         <link href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
         </link>
         <updated>2019-09-10T15:54:43.000Z</updated>
-        <summary type="html"><![CDATA[<p>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</p>
+        <summary type="html"><![CDATA[<p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</p>
+        <content type="html"><![CDATA[<p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
 <!-- more -->
 <h2 id="简介">简介</h2>
 <p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。由于某一网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户信息的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会带上此cookie。</p>
@@ -46,7 +46,90 @@
 <li>name：键</li>
 <li>value：值</li>
 </ul>
-<h2 id="上手">上手：</h2>
+<h2 id="上手">上手</h2>
+<ol>
+<li><strong>使用idea建立springboot项目</strong><br>
+一路点下去即可：<br>
+<img src="https://paz.coding.me/post-images/1568171060424.png" alt=""></li>
+<li><strong>导入依赖</strong><br>
+在pom.xml：</li>
+</ol>
+<pre><code class="language-xml"> &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<ol start="3">
+<li><strong>配置web</strong></li>
+</ol>
+<pre><code>	#thymeleaf：
+#前缀 注意最后的“/”
+spring.thymeleaf.prefix=classpath:/templates/
+#后缀
+spring.thymeleaf.suffix=.html
+#类型
+spring.thymeleaf.servlet.content-type=text/html
+#语法
+spring.thymeleaf.mode=LEGACYHTML5
+#模板缓存
+spring.thymeleaf.cache=false
+#静态文件位置
+spring.mvc.static-path-pattern=/static/**
+</code></pre>
+<ol start="4">
+<li><strong>建立index.html和index.js文件</strong><br>
+路径为：<br>
+<img src="https://paz.coding.me/post-images/1568171689524.png" alt=""></li>
+</ol>
+<pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
+function setCookie() {
+    $.ajax({
+        url:&quot;/cookies&quot;,
+        type:&quot;POST&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+
+//向后台服务器发送字符串的同时获得cookie
+function sendWithCookie() {
+    $.ajax({
+        url:&quot;/cookies/sessionID&quot;,
+        type:&quot;GET&quot;,
+        success:function (result) {
+            alert(result);
+        }
+    })
+}
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;cookie学习&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/static/index.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;button onclick=&quot;setCookie()&quot;&gt;设置cookie&lt;/button&gt;
+&lt;button onclick=&quot;sendWithCookie()&quot;&gt;发送带cookie请求&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ol start="5">
+<li><strong>建立Controller类</strong></li>
+</ol>
 <pre><code class="language-java">@Controller
 public class MainController {
     private static final String TAG=&quot;MainController&quot;;
@@ -93,42 +176,6 @@ public class MainController {
     }
 }
 
-</code></pre>
-<pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
-function setCookie() {
-    $.ajax({
-        url:&quot;/cookies&quot;,
-        type:&quot;POST&quot;,
-        success:function (result) {
-            alert(result);
-        }
-    })
-}
-
-//向后台服务器发送字符串的同时获得cookie
-function sendWithCookie() {
-    $.ajax({
-        url:&quot;/cookies/sessionID&quot;,
-        type:&quot;GET&quot;,
-        success:function (result) {
-            alert(result);
-        }
-    })
-}
-</code></pre>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;cookie学习&lt;/title&gt;
-    &lt;script src=&quot;/static/jquery.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;/static/index.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;button onclick=&quot;setCookie()&quot;&gt;设置cookie&lt;/button&gt;
-&lt;button onclick=&quot;sendWithCookie()&quot;&gt;发送带cookie请求&lt;/button&gt;
-&lt;/body&gt;
-&lt;/html&gt;
 </code></pre>
 ]]></content>
     </entry>

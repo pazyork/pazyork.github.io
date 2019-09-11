@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T02:28:18.861Z</updated>
+    <updated>2019-09-11T03:01:59.593Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,12 +11,42 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Cookie 简单使用示范]]></title>
+        <title type="html"><![CDATA[cookie+springboot的简单示范]]></title>
         <id>https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan</id>
         <link href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
         </link>
         <updated>2019-09-10T15:54:43.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="先贴上代码明天再写博客">先贴上代码，明天再写博客</h1>
+        <summary type="html"><![CDATA[<p>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</p>
+<!-- more -->
+<h2 id="简介">简介</h2>
+<p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。由于某一网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户信息的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会带上此cookie。</p>
+<h2 id="分类">分类</h2>
+<h4 id="1-存储位置">1. 存储位置</h4>
+<ul>
+<li><strong>内存</strong>：存储于内存中的cookie，当浏览器关闭时便会丢失。</li>
+<li><strong>硬盘</strong>：存储于硬盘中的cookie</li>
+</ul>
+<p>默认均为内存cookie，能保存于硬盘的cookie限制条件会比较多。</p>
+<h4 id="2-维持时间">2. 维持时间</h4>
+<ul>
+<li><strong>长期</strong>：有效期很久</li>
+<li><strong>短期</strong>：有效期比较短暂</li>
+</ul>
+<p>当然，cookie的有效期是可以认为设置的，下面的代码中也会有提及到，详细的可以查看<a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">这里</a>。</p>
+<h2 id="其他属性">其他属性</h2>
+<ul>
+<li>secure ：是否要求通过https传递cookie</li>
+<li>Size：大小的设置</li>
+<li>http：要求只有http请求头中带有cookie</li>
+<li><strong>expires/Max-Age</strong>：超时时间</li>
+<li>domain：可以访问此cookie的域名</li>
+<li>path：只有域名的该路径下的页面可以访问cookie</li>
+<li>name：键</li>
+<li>value：值</li>
+</ul>
+<h2 id="上手">上手：</h2>
 <pre><code class="language-java">@Controller
 public class MainController {
     private static final String TAG=&quot;MainController&quot;;
@@ -25,7 +55,7 @@ public class MainController {
     public String index(){
         return &quot;index&quot;;
     }
-
+	 //获取带有cookie的普通http请求
     @ResponseBody
     @RequestMapping(value = &quot;/cookies/{key}&quot;)
     public String getCookies(HttpServletRequest request, 
@@ -33,6 +63,7 @@ public class MainController {
         String result=&quot;未获取到sessionID&quot;;
         Cookie[] cookies = request.getCookies();
         if (cookies!=null){
+						//需要遍历
             for (Cookie cookie:cookies){
                 if (&quot;sessionID&quot;.equals(cookie.getName())){
                     result = &quot;sessionID:&quot; + cookie.getValue();
@@ -41,13 +72,16 @@ public class MainController {
         }
         return result;
     }
+		//设置cookie
     @ResponseBody
     @RequestMapping(value = &quot;/cookies&quot;, method = RequestMethod.POST)
     public String setCookies(HttpServletResponse response) {
         String result = &quot;服务器出现错误&quot;;
         response.setStatus(500);
         try{
-            Cookie cookie = new Cookie(&quot;sessionID&quot;,&quot;范鹏程&quot;);
+            Cookie cookie = new Cookie(&quot;sessionID&quot;, &quot;PPP&quot;);
+            //设置有效期 单位是秒，不是毫秒
+            cookie.setMaxAge(20*60);
             response.addCookie(cookie);
             response.setStatus(200);
             result = &quot;cookie设置完成&quot;;

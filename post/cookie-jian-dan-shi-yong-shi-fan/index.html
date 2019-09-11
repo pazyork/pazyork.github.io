@@ -2,9 +2,9 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cookie 简单使用示范 | PPP的博客</title>
+<title>cookie+springboot的简单示范 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
-<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1568131139054">
+<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1568170912547">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://paz.coding.me/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://paz.coding.me">
-  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1568131139054" alt="">
+  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1568170912547" alt="">
   </a>
   <h1 class="site-title">
     PPP的博客
@@ -83,7 +83,7 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Cookie 简单使用示范
+              cookie+springboot的简单示范
             </h2>
             <div class="post-info">
               <span>
@@ -97,7 +97,35 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h1 id="先贴上代码明天再写博客">先贴上代码，明天再写博客</h1>
+                <p>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</p>
+<!-- more -->
+<h2 id="简介">简介</h2>
+<p>cookie保存在浏览器中，可以用于存储描述用户/服务端信息。由于某一网站的cookie在浏览器一经设置，此后再向该网站发送请求时，均会带上cookie信息。由于这个原因它在会话维持中，被使用的特别广泛。比如：某一购物网站，在用户登陆时，服务端要求浏览器保存一条能唯一标识用户信息的信息，此设置完成后，用户进行诸如查看个人信息、订单的时候均会带上此cookie。</p>
+<h2 id="分类">分类</h2>
+<h4 id="1-存储位置">1. 存储位置</h4>
+<ul>
+<li><strong>内存</strong>：存储于内存中的cookie，当浏览器关闭时便会丢失。</li>
+<li><strong>硬盘</strong>：存储于硬盘中的cookie</li>
+</ul>
+<p>默认均为内存cookie，能保存于硬盘的cookie限制条件会比较多。</p>
+<h4 id="2-维持时间">2. 维持时间</h4>
+<ul>
+<li><strong>长期</strong>：有效期很久</li>
+<li><strong>短期</strong>：有效期比较短暂</li>
+</ul>
+<p>当然，cookie的有效期是可以认为设置的，下面的代码中也会有提及到，详细的可以查看<a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">这里</a>。</p>
+<h2 id="其他属性">其他属性</h2>
+<ul>
+<li>secure ：是否要求通过https传递cookie</li>
+<li>Size：大小的设置</li>
+<li>http：要求只有http请求头中带有cookie</li>
+<li><strong>expires/Max-Age</strong>：超时时间</li>
+<li>domain：可以访问此cookie的域名</li>
+<li>path：只有域名的该路径下的页面可以访问cookie</li>
+<li>name：键</li>
+<li>value：值</li>
+</ul>
+<h2 id="上手">上手：</h2>
 <pre><code class="language-java">@Controller
 public class MainController {
     private static final String TAG=&quot;MainController&quot;;
@@ -106,7 +134,7 @@ public class MainController {
     public String index(){
         return &quot;index&quot;;
     }
-
+	 //获取带有cookie的普通http请求
     @ResponseBody
     @RequestMapping(value = &quot;/cookies/{key}&quot;)
     public String getCookies(HttpServletRequest request, 
@@ -114,6 +142,7 @@ public class MainController {
         String result=&quot;未获取到sessionID&quot;;
         Cookie[] cookies = request.getCookies();
         if (cookies!=null){
+						//需要遍历
             for (Cookie cookie:cookies){
                 if (&quot;sessionID&quot;.equals(cookie.getName())){
                     result = &quot;sessionID:&quot; + cookie.getValue();
@@ -122,13 +151,16 @@ public class MainController {
         }
         return result;
     }
+		//设置cookie
     @ResponseBody
     @RequestMapping(value = &quot;/cookies&quot;, method = RequestMethod.POST)
     public String setCookies(HttpServletResponse response) {
         String result = &quot;服务器出现错误&quot;;
         response.setStatus(500);
         try{
-            Cookie cookie = new Cookie(&quot;sessionID&quot;,&quot;范鹏程&quot;);
+            Cookie cookie = new Cookie(&quot;sessionID&quot;, &quot;PPP&quot;);
+            //设置有效期 单位是秒，不是毫秒
+            cookie.setMaxAge(20*60);
             response.addCookie(cookie);
             response.setStatus(200);
             result = &quot;cookie设置完成&quot;;
@@ -181,7 +213,20 @@ function sendWithCookie() {
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li><a href="#%E5%85%88%E8%B4%B4%E4%B8%8A%E4%BB%A3%E7%A0%81%E6%98%8E%E5%A4%A9%E5%86%8D%E5%86%99%E5%8D%9A%E5%AE%A2">先贴上代码，明天再写博客</a></li>
+<li>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a><br>
+*
+<ul>
+<li><a href="#1-%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE">1. 存储位置</a></li>
+<li><a href="#2-%E7%BB%B4%E6%8C%81%E6%97%B6%E9%97%B4">2. 维持时间</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%B1%9E%E6%80%A7">其他属性</a></li>
+<li><a href="#%E4%B8%8A%E6%89%8B">上手：</a></li>
+</ul>
+</li>
 </ul>
 
               </div>

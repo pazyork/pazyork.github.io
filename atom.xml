@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T05:08:06.102Z</updated>
+    <updated>2019-09-11T05:08:48.279Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -35,7 +35,7 @@
 <li><strong>短期</strong>：有效期比较短暂</li>
 </ul>
 <p>当然，cookie的有效期是可以认为设置的，下面的代码中也会有提及到，详细的可以查看<a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">这里</a>。</p>
-<h2 id="其他属性">其他属性</h2>
+<h3 id="其他属性">其他属性</h3>
 <ul>
 <li>secure ：是否要求通过https传递cookie</li>
 <li>Size：大小的设置</li>
@@ -167,7 +167,7 @@ public class MainController {
     }
 }
 </code></pre>
-<h2 id="测试">测试</h2>
+<h3 id="测试">测试</h3>
 <p><img src="https://paz.coding.me/post-images/1568177243936.png" alt=""></p>
 <center>设置cookie</center>
 <p><img src="https://paz.coding.me/post-images/1568177455911.png" alt=""></p>

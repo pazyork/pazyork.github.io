@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>好物 | PPP的博客</title>
+<title>Mybatis:文件 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
 <link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1571974073537">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -92,31 +92,99 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              好物
+              Mybatis:文件
             </h2>
             <div class="post-info">
               <span>
-                2019-09-10
+                2019-10-25
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
+              <img class="post-feature-image" src="https://paz.coding.me/post-images/mybatisge-wen-jian-zuo-yong.jpg" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p><em>我会在这里分享一些有意思的博客、教程、书：</em></p>
+                <p>简单介绍下Maven项目中与Mybatis相关的各文件的作用。</p>
 <!-- more -->
+<h1 id="目录">目录</h1>
+<ol>
+<li>pom.xml</li>
+<li>mybatis-config.xml</li>
+<li>xxxMapper.xml</li>
+<li>xxxMapper.java</li>
+<li>xxxDao.java</li>
+<li>xxDaoImpl.java</li>
+</ol>
+<h1 id="介绍">介绍</h1>
+<h2 id="1-pomxml">1. pom.xml</h2>
+<pre><code>这个了解maven的肯定知道，在这里主要是为了导入mybatis&amp;jdbc依赖。
+</code></pre>
+<pre><code class="language-xml">        &lt;!--jdbc--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.32&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--mybatis--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+            &lt;version&gt;3.2.8&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<h2 id="2-mybatis-configxml">2. mybatis-config.xml</h2>
+<p><strong>这个文件是一个关键文件，负责整个项目中Mybatis的配置。</strong><br>
+其标签作用很丰富，如数据库的连接、内外部参数的引入、xxxMapper.xml的使用、命名规则的转换、缓存设置等。现在介绍其中最重要的几个：</p>
+<h3 id="configuration">configuration###</h3>
+<h3 id="environments">environments</h3>
+<h3 id="mappers">mappers</h3>
+<h2 id="3-application-xxxproperties">3. application-xxx.properties</h2>
+<h2 id="4-xxxmapperxml">4. xxxMapper.xml</h2>
+<h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
+<h2 id="6-xxxdaojava">6. xxxDao.java</h2>
+<h2 id="6-xxdaoimpljava">6. xxDaoImpl.java</h2>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a>
+<ul>
+<li><a href="#1-pomxml">1. pom.xml</a></li>
+<li><a href="#2-mybatis-configxml">2. mybatis-config.xml</a>
+<ul>
+<li><a href="#configuration">configuration###</a></li>
+<li><a href="#environments">environments</a></li>
+<li><a href="#mappers">mappers</a></li>
+</ul>
+</li>
+<li><a href="#3-application-xxxproperties">3. application-xxx.properties</a></li>
+<li><a href="#4-xxxmapperxml">4. xxxMapper.xml</a></li>
+<li><a href="#5-xxxmapperjava">5. xxxMapper.java</a></li>
+<li><a href="#6-xxxdaojava">6. xxxDao.java</a></li>
+<li><a href="#6-xxdaoimpljava">6. xxDaoImpl.java</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
+              <h3 class="post-title">
+                cookie+springboot的简单示范
+              </h3>
+            </a>
+          </div>
         
 
         

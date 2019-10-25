@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-09-11T05:15:08.569Z</updated>
+    <updated>2019-10-25T03:27:59.831Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>https://paz.coding.me/images/avatar.png</logo>
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Mybatis:文件]]></title>
+        <id>https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong</id>
+        <link href="https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong">
+        </link>
+        <updated>2019-10-25T02:47:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>简单介绍下Maven项目中与Mybatis相关的各文件的作用。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>简单介绍下Maven项目中与Mybatis相关的各文件的作用。</p>
+<!-- more -->
+<h1 id="目录">目录</h1>
+<ol>
+<li>pom.xml</li>
+<li>mybatis-config.xml</li>
+<li>xxxMapper.xml</li>
+<li>xxxMapper.java</li>
+<li>xxxDao.java</li>
+<li>xxDaoImpl.java</li>
+</ol>
+<h1 id="介绍">介绍</h1>
+<h2 id="1-pomxml">1. pom.xml</h2>
+<pre><code>这个了解maven的肯定知道，在这里主要是为了导入mybatis&amp;jdbc依赖。
+</code></pre>
+<pre><code class="language-xml">        &lt;!--jdbc--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.32&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--mybatis--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+            &lt;version&gt;3.2.8&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<h2 id="2-mybatis-configxml">2. mybatis-config.xml</h2>
+<p><strong>这个文件是一个关键文件，负责整个项目中Mybatis的配置。</strong><br>
+其标签作用很丰富，如数据库的连接、内外部参数的引入、xxxMapper.xml的使用、命名规则的转换、缓存设置等。现在介绍其中最重要的几个：</p>
+<h3 id="configuration">configuration###</h3>
+<h3 id="environments">environments</h3>
+<h3 id="mappers">mappers</h3>
+<h2 id="3-application-xxxproperties">3. application-xxx.properties</h2>
+<h2 id="4-xxxmapperxml">4. xxxMapper.xml</h2>
+<h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
+<h2 id="6-xxxdaojava">6. xxxDao.java</h2>
+<h2 id="6-xxdaoimpljava">6. xxDaoImpl.java</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[cookie+springboot的简单示范]]></title>
         <id>https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan</id>
@@ -168,11 +217,11 @@ public class MainController {
 }
 </code></pre>
 <h3 id="测试">测试</h3>
-<p><img src="https://paz.coding.me/post-images/1568177243936.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://paz.coding.me/post-images/1568177243936.png" alt=""></figure>
 <center>设置cookie</center>
-<p><img src="https://paz.coding.me/post-images/1568177455911.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://paz.coding.me/post-images/1568177455911.png" alt=""></figure>
 <center>可以看到浏览器中已经保存了cookie</center>
-<p><img src="https://paz.coding.me/post-images/1568177627756.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://paz.coding.me/post-images/1568177627756.png" alt=""></figure>
 <center>后台也拿到了cookie，并作为返回值，返回给了前台</center>
 <h3 id="参考感谢">参考&amp;感谢</h3>
 <p><a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">cookie属性及有效期的设置</a></p>

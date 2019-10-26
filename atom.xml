@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-10-26T12:39:25.602Z</updated>
+    <updated>2019-10-26T13:38:33.066Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Mybatis:文件]]></title>
+        <title type="html"><![CDATA[Mybatis-文件]]></title>
         <id>https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong</id>
         <link href="https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong">
         </link>
@@ -131,7 +131,56 @@ b.  【属性】 value</p>
 &lt;/settings&gt;
 </code></pre>
 <h2 id="3-application-xxxproperties">3. application-xxx.properties</h2>
+<p>在springboot项目中，我们可以采取注解的方式实现很多查询，不再需要写mybatis-config.xml了，甚至不再需要写xxxMapper.xml了。<br>
+这部分推荐一个案例：<a href="https://blog.csdn.net/qq_35571554/article/details/82260032">关于Springboot-Mybatis无配置文件注解版的思考</a></p>
 <h2 id="4-xxxmapperxml">4. xxxMapper.xml</h2>
+<p>这部分强烈推荐看这里 <a href="https://blog.csdn.net/hellozpc/article/details/80878563#9Mapper_XML_1182">Mybatis教程-实战看这一篇就够了</a>。这部分的论述，我很多是直接✍鸟哥的，在此对原作者鸟哥表示🙇‍！</p>
+<h3 id="41-crud标签">4.1 CRUD标签</h3>
+<pre><code class="language-xml">&lt;select id=&quot;queryUserById&quot; resultType=&quot;com.zpc.mybatis.pojo.User&quot;&gt;
+    select * from user where id=${id}
+    &lt;!-- 相较于${id}，#{id}会加上双引号，可以防止sql注入 --&gt;
+&lt;/select&gt;
+</code></pre>
+<ol>
+<li><strong>select</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>select中的几个属性说明：<br>
+id属性：当前名称空间下的statement的唯一标识。必须。要求id和mapper接口中的方法的名字一致。<br>
+resultType：将结果集映射为java的对象类型。必须（和 resultMap 二选一）<br>
+parameterType：传入参数类型。可以省略</p>
+<ol start="2">
+<li><strong>insert</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>insert 的几个属性说明：<br>
+id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致<br>
+parameterType：参数的类型，使用动态代理之后和方法的参数类型一致<br>
+useGeneratedKeys:开启主键回写<br>
+keyColumn：指定数据库的主键<br>
+keyProperty：主键对应的pojo属性名<br>
+标签内部：具体的sql语句。</p>
+<ol start="3">
+<li><strong>update</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>id属性：当前名称空间下的statement的唯一标识(必须属性)；<br>
+parameterType：传入的参数类型，可以省略。<br>
+标签内部：具体的sql语句。</p>
+<ol start="4">
+<li><strong>delete</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>delete 的几个属性说明：<br>
+id属性：当前名称空间下的statement的唯一标识(必须属性)；<br>
+parameterType：传入的参数类型，可以省略。<br>
+标签内部：具体的sql语句。</p>
+<h3 id="42-resultmap">4.2 resultMap</h3>
+<p><img src="https://paz.coding.me/post-images/1572096899494.png" alt=""><br>
+<img src="https://paz.coding.me/post-images/1572096906587.png" alt=""><br>
+<img src="https://paz.coding.me/post-images/1572096912659.png" alt=""></p>
+<h3 id="43-sql片段">4.3 sql片段</h3>
+<p>过于繁琐，在此略过</p>
 <h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
 <h2 id="6-xxxdaojava">6. xxxDao.java</h2>
 <h2 id="6-xxdaoimpljava">6. xxDaoImpl.java</h2>

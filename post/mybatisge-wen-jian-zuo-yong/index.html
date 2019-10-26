@@ -2,9 +2,9 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mybatis:文件 | PPP的博客</title>
+<title>Mybatis-文件 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
-<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1572093544990">
+<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1572097103616">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://paz.coding.me/styles/main.css">
@@ -29,7 +29,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://paz.coding.me">
-  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1572093544990" alt="">
+  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1572097103616" alt="">
   </a>
   <h1 class="site-title">
     PPP的博客
@@ -92,14 +92,14 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Mybatis:文件
+              Mybatis-文件
             </h2>
             <div class="post-info">
               <span>
                 2019-10-25
               </span>
               <span>
-                5 min read
+                7 min read
               </span>
               
             </div>
@@ -221,7 +221,56 @@ b.  【属性】 value</p>
 &lt;/settings&gt;
 </code></pre>
 <h2 id="3-application-xxxproperties">3. application-xxx.properties</h2>
+<p>在springboot项目中，我们可以采取注解的方式实现很多查询，不再需要写mybatis-config.xml了，甚至不再需要写xxxMapper.xml了。<br>
+这部分推荐一个案例：<a href="https://blog.csdn.net/qq_35571554/article/details/82260032">关于Springboot-Mybatis无配置文件注解版的思考</a></p>
 <h2 id="4-xxxmapperxml">4. xxxMapper.xml</h2>
+<p>这部分强烈推荐看这里 <a href="https://blog.csdn.net/hellozpc/article/details/80878563#9Mapper_XML_1182">Mybatis教程-实战看这一篇就够了</a>。这部分的论述，我很多是直接✍鸟哥的，在此对原作者鸟哥表示🙇‍！</p>
+<h3 id="41-crud标签">4.1 CRUD标签</h3>
+<pre><code class="language-xml">&lt;select id=&quot;queryUserById&quot; resultType=&quot;com.zpc.mybatis.pojo.User&quot;&gt;
+    select * from user where id=${id}
+    &lt;!-- 相较于${id}，#{id}会加上双引号，可以防止sql注入 --&gt;
+&lt;/select&gt;
+</code></pre>
+<ol>
+<li><strong>select</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>select中的几个属性说明：<br>
+id属性：当前名称空间下的statement的唯一标识。必须。要求id和mapper接口中的方法的名字一致。<br>
+resultType：将结果集映射为java的对象类型。必须（和 resultMap 二选一）<br>
+parameterType：传入参数类型。可以省略</p>
+<ol start="2">
+<li><strong>insert</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>insert 的几个属性说明：<br>
+id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致<br>
+parameterType：参数的类型，使用动态代理之后和方法的参数类型一致<br>
+useGeneratedKeys:开启主键回写<br>
+keyColumn：指定数据库的主键<br>
+keyProperty：主键对应的pojo属性名<br>
+标签内部：具体的sql语句。</p>
+<ol start="3">
+<li><strong>update</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>id属性：当前名称空间下的statement的唯一标识(必须属性)；<br>
+parameterType：传入的参数类型，可以省略。<br>
+标签内部：具体的sql语句。</p>
+<ol start="4">
+<li><strong>delete</strong></li>
+</ol>
+<blockquote></blockquote>
+<p>delete 的几个属性说明：<br>
+id属性：当前名称空间下的statement的唯一标识(必须属性)；<br>
+parameterType：传入的参数类型，可以省略。<br>
+标签内部：具体的sql语句。</p>
+<h3 id="42-resultmap">4.2 resultMap</h3>
+<p><img src="https://paz.coding.me/post-images/1572096899494.png" alt=""><br>
+<img src="https://paz.coding.me/post-images/1572096906587.png" alt=""><br>
+<img src="https://paz.coding.me/post-images/1572096912659.png" alt=""></p>
+<h3 id="43-sql片段">4.3 sql片段</h3>
+<p>过于繁琐，在此略过</p>
 <h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
 <h2 id="6-xxxdaojava">6. xxxDao.java</h2>
 <h2 id="6-xxdaoimpljava">6. xxDaoImpl.java</h2>
@@ -276,7 +325,13 @@ b.  【属性】 value</p>
 </ul>
 </li>
 <li><a href="#3-application-xxxproperties">3. application-xxx.properties</a></li>
-<li><a href="#4-xxxmapperxml">4. xxxMapper.xml</a></li>
+<li><a href="#4-xxxmapperxml">4. xxxMapper.xml</a>
+<ul>
+<li><a href="#41-crud%E6%A0%87%E7%AD%BE">4.1 CRUD标签</a></li>
+<li><a href="#42-resultmap">4.2 resultMap</a></li>
+<li><a href="#43-sql%E7%89%87%E6%AE%B5">4.3 sql片段</a></li>
+</ul>
+</li>
 <li><a href="#5-xxxmapperjava">5. xxxMapper.java</a></li>
 <li><a href="#6-xxxdaojava">6. xxxDao.java</a></li>
 <li><a href="#6-xxdaoimpljava">6. xxDaoImpl.java</a></li>

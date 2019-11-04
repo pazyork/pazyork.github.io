@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mybatis-文件 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
-<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1572097103616">
+<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1572871821700">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://paz.coding.me/styles/main.css">
@@ -29,7 +29,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://paz.coding.me">
-  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1572097103616" alt="">
+  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1572871821700" alt="">
   </a>
   <h1 class="site-title">
     PPP的博客
@@ -272,6 +272,22 @@ parameterType：传入的参数类型，可以省略。<br>
 <h3 id="43-sql片段">4.3 sql片段</h3>
 <p>过于繁琐，在此略过</p>
 <h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
+<p>用于调用<br>
+FireconCartMapper.java文件</p>
+<pre><code class="language-java">public interface FireconCartMapper extends Mapper&lt;FireconCart&gt;{
+    //可以采用注解的方式来执行Sql
+    @Delete({&quot;&lt;script&gt; delete from firecon_cart where account = #{account}; &lt;/script&gt;&quot;})
+    int deleteThis(@Param(&quot;account&quot;)String account);
+    
+    //也可以关联FireconCartMapper.xml文件
+    public List&lt;Map&gt; FindFireconCart(String account);
+}
+</code></pre>
+<p>FireconCartMapper.xml文件</p>
+<pre><code class="language-xml">&lt;select id=&quot;FindFireconCart&quot; resultMap=&quot;CartInfo&quot;&gt;
+		SELECT * from firecon_cart where account = #{account}
+&lt;/select&gt;
+</code></pre>
 <h2 id="6-xxxdaojava">6. xxxDao.java</h2>
 <h2 id="6-xxdaoimpljava">6. xxDaoImpl.java</h2>
 

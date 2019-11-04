@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PPP的博客</title>
+<title>Java：字符串拼接 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
 <link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1572874311937">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -89,22 +89,119 @@
   </div>
 </div>
 
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java：字符串拼接
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-04
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://paz.coding.me/tag/zWGCUzPbF" class="post-tag">
+                  # java
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://paz.coding.me/post-images/javazi-fu-chuan-pin-jie.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code class="language-java">import com.sun.deploy.util.StringUtils;
+import java.util.Arrays;
+import java.util.List;
 
-        <div class="tags-container">
-          
-            <a class="tag" href="https://paz.coding.me/tag/zWGCUzPbF">java</a>
-          
-            <a class="tag" href="https://paz.coding.me/tag/G8X1H3APe">数据库</a>
-          
-            <a class="tag" href="https://paz.coding.me/tag/KEvnJ65J5t">mybatis</a>
-          
-            <a class="tag" href="https://paz.coding.me/tag/xIyQPkXAf">会话保持</a>
-          
-            <a class="tag" href="https://paz.coding.me/tag/XT4psqshuV">cookie</a>
-          
-            <a class="tag" href="https://paz.coding.me/tag/8pW3-SGKp">Rest</a>
-          
+/**
+ * @author ppp
+ * @date 2019/11/4
+ **/
+public class JoinString {
+    public static  void main(String[] args){
+        ////////////////////////////////////////
+        //1. 待拼接数组
+        ////////////////////////////////////////
+        String[] parts={&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;};
+
+        ////////////////////////////////////////
+        //2. 不同的方法
+        ////////////////////////////////////////
+
+        ////////////////////////////////////////
+        //使用类库
+        //2.1 com.sun.deploy.util.StringUtils
+        //要求第一个入参是java.util下的类型
+        ////////////////////////////////////////
+        List partl=Arrays.asList(parts);
+        String result1= StringUtils.join(partl,&quot;-&quot;);
+        System.out.println(result1);
+        //输出结果为：&quot;a-b-c-d-e-f&quot;
+
+        ////////////////////////////////////////
+        //2.2 自己拼接
+        ////////////////////////////////////////
+        String result2=&quot;&quot;;
+        for (int i=0;i&lt;parts.length-1;i++){
+            result2=result2+parts[i]+&quot;-&quot;;
+        }
+        result2=result2+parts[parts.length-1];
+        System.out.println(result2);
+        
+    }
+}
+
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
         </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong">
+              <h3 class="post-title">
+                Mybatis-文件
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c7a5c1cea9a9df684691',
+    clientSecret: '3da6389f184072cf8fb4030b2529c12f01c73755',
+    repo: 'pazyork.github.io',
+    owner: 'pazyork',
+    admin: ['pazyork'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
         <div class="site-footer">
   做难事，必有所得 | 

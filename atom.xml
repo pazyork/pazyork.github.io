@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-05T00:48:53.395Z</updated>
+    <updated>2019-11-05T06:24:26.857Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Java：常用的String方法总结]]></title>
+        <title type="html"><![CDATA[Java：String回顾]]></title>
         <id>https://paz.coding.me/post/javazi-fu-chuan-pin-jie</id>
         <link href="https://paz.coding.me/post/javazi-fu-chuan-pin-jie">
         </link>
@@ -105,6 +105,63 @@ public class JoinString {
 }
 
 </code></pre>
+<h2 id="string-stringbuffer和stringbuilder的一些差异">String、StringBuffer和StringBuilder的一些差异</h2>
+<h4 id="stringbuilder和stringbuffer相较于string">StringBuilder和StringBuffer相较于String：</h4>
+<ol>
+<li>赋值操作前两者是浅拷贝</li>
+<li>前两者的值是可以改变的，而String修改值时其实是删除旧的对象，讲修改后的结果放入新的对象中，内存地址已经发生变化了</li>
+</ol>
+<pre><code class="language-java">/**
+ * @author ppp
+ * @date 2019/11/5
+ **/
+public class BufferString {
+
+    public static void main(String[] args) {
+        /////////////////////////////////////////////
+        //BufferString
+        System.out.println(&quot;*****************BufferString线程安全的*****************&quot;);
+        /////////////////////////////////////////////
+        StringBuffer a = new StringBuffer(&quot;pppppp&quot;);
+        StringBuffer b=a;
+        System.out.println(a==b);   //输出结果 true
+        b.append(&quot;az&quot;);
+        System.out.println(a);      //输出结果ppppppaz
+        System.out.println(b);      //输出结果ppppppaz
+        System.out.println(a==b);   //输出结果true
+   
+        /////////////////////////////////////////////
+        //StringBuilder
+        System.out.println(&quot;*****************StringBuilder线程不安全的，性能略高*****************&quot;);
+        /////////////////////////////////////////////
+        StringBuilder e = new StringBuilder(&quot;pppppp&quot;);
+        StringBuilder f=e;
+        System.out.println(e==f);   //输出结果 true
+        f.append(&quot;az&quot;);
+        System.out.println(e);      //输出结果ppppppaz
+        System.out.println(f);      //输出结果ppppppaz
+        System.out.println(e==f);   //输出结果true
+
+        /////////////////////////////////////////////
+        //String
+        System.out.println(&quot;*****************String*****************&quot;);
+        /////////////////////////////////////////////
+        String c = new String(&quot;pppppp&quot;);
+        String d=c;
+        System.out.println(c==d);   //输出true
+        d = c.concat(&quot;az&quot;);
+        System.out.println(c);      //输出pppppp
+        System.out.println(d);      //输出ppppppaz
+        System.out.println(c==d);   //输出false
+    }
+}
+</code></pre>
+<h4 id="stringbuilder相较于和stringbuffer">StringBuilder相较于和StringBuffer</h4>
+<ol>
+<li>后者是进程安全的，后者几乎所有的非静态方法都带有 synchronized 关键字<br>
+<img src="https://paz.coding.me/post-images/1572934729425.png" alt=""><br>
+<img src="https://paz.coding.me/post-images/1572934738264.png" alt=""></li>
+</ol>
 ]]></content>
     </entry>
     <entry>

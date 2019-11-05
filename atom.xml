@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-04T13:31:55.398Z</updated>
+    <updated>2019-11-05T00:48:53.395Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,12 +11,58 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Java：字符串拼接]]></title>
+        <title type="html"><![CDATA[Java：常用的String方法总结]]></title>
         <id>https://paz.coding.me/post/javazi-fu-chuan-pin-jie</id>
         <link href="https://paz.coding.me/post/javazi-fu-chuan-pin-jie">
         </link>
         <updated>2019-11-04T12:51:16.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-java">import com.sun.deploy.util.StringUtils;
+        <content type="html"><![CDATA[<h2 id="通用">通用</h2>
+<pre><code class="language-java">public class test{
+    public static void main(String[] args){
+        String s1=new String(&quot;abx&quot;);
+        String s2=&quot;abX&quot;;
+
+        //内容相等判断
+        System.out.println(s1.equals(s2));
+        //大小写的字符串相等判断，验证码
+        System.out.println(s1.equalsIgnoreCase(s2));
+
+        String s3=s1;
+        //s3和s发生时 共用同一内存地址
+        //输出true
+        System.out.println(s1==s3);
+        //修改后使用不同内存地址
+        s3=&quot;abX&quot;;
+        //输出false
+        System.out.println(s1==s3);
+
+        char x=s1.charAt(2);
+        //输出'x'
+        System.out.println(x);
+
+        //区分大小写，找不到则返回-1
+        System.out.println(s3.indexOf(&quot;x&quot;));
+        //输出序列从0开始，输出2
+        System.out.println(s3.indexOf(&quot;X&quot;));
+        //输出1
+        System.out.println(s3.indexOf(&quot;bX&quot;));
+
+        String s4=&quot; x X X x &quot;;
+
+        //输出最后一个匹配的字符串所在位置，输出5
+        System.out.println(s4.lastIndexOf(&quot;X&quot;));
+
+        //输出&quot;x X X x&quot;
+        System.out.println(s4.trim());
+
+        //用第二个参数，替换字符串中的第一个参数，输出&quot;xXXx&quot;
+        System.out.println(s4.replace(&quot; &quot;,&quot;&quot;));
+
+    }
+}
+</code></pre>
+<h2 id="字符串拼接">字符串拼接</h2>
+<pre><code class="language-java">import com.sun.deploy.util.StringUtils;
 import java.util.Arrays;
 import java.util.List;
 

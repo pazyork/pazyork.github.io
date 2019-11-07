@@ -1,0 +1,303 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java: 引用数据类型和传值数据类型 | PPP的博客</title>
+<meta name="description" content="望远能知风浪小，凌空始觉海波平" />
+<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1573108918579">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://paz.coding.me/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145415852-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145415852-1');
+</script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://paz.coding.me">
+  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1573108918579" alt="">
+  </a>
+  <h1 class="site-title">
+    PPP的博客
+  </h1>
+  <p class="site-description">
+    望远能知风浪小，凌空始觉海波平
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          我
+        </a>
+      
+    
+      
+        <a href="https://paz.coding.me/post/hao-wu/" class="menu">
+          书单
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/pazyork/" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java: 引用数据类型和传值数据类型
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-06
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>java相较于c/c++没有指针的概念，但是不同名称的变量共用同一内存地址在java中是存在的。<br>
+有必要介绍下不同对象赋值时，java中那些数据是作为引用，那些是作为传值。</p>
+<!-- more -->
+<h2 id="引用数据类型">引用数据类型</h2>
+<p>这是一个People类，只有性别一个数据成员</p>
+<pre><code class="language-java">public class People {
+    int sex;    //性别，0为男性，非0为女性
+}
+</code></pre>
+<p>现在我们做一个这个自定义类做一个小实验。</p>
+<pre><code class="language-java">    //////////////////////////////////////////
+    //引用数据类型
+    //////////////////////////////////////////
+
+        // 1
+        //
+        People LiLei =  new People();
+        LiLei.sex=0;
+        People hmm=LiLei;
+
+        // 2
+        //输出true
+        //修改前 韩梅梅和李雷内存地址相同
+        System.out.println(hmm==LiLei);
+
+        // 3
+        //修改韩梅梅性别为1
+        hmm.sex=1;
+
+        // 4
+        //输出仍旧为true
+        //修改后 韩梅梅和李雷内存地址仍旧相同
+        System.out.println(hmm==LiLei);
+
+        // 5
+        // 李雷成功变性为1，但是变性的操作是通过韩梅梅实现的，
+        // 说明韩梅梅的身份其实只是李雷的马甲，它们是同一个人
+        System.out.println(LiLei.sex);
+</code></pre>
+<p>实验中，我们对韩梅梅性别的变动会同时影响到李雷，而且用“==”符号判断的结果任何情况下都为true。<br>
+<strong>说明对于用户定义的类对象的相互赋值，传递的其实是内存地址，而不是其值，是引用行数据类型</strong>。</p>
+<h2 id="传值数据类型">传值数据类型</h2>
+<p>现在我们换成java中的基本数据类型</p>
+<pre><code class="language-java">    //////////////////////////////////////////
+    //传值数据类型
+    //////////////////////////////////////////
+        //1. 对ppp_int对象初始值为5
+        int ppp_int = 5;
+
+        //2. 使用ppp_int对paz_int初始化
+        int paz_int = ppp_int;
+
+        //3. 输出结果为true！！！
+        System.out.println(paz_int == ppp_int);
+        
+        //4. 现在修改paz_int对象
+        paz_int = 4;
+
+        //5. 输出结果变为false
+        System.out.println(paz_int == ppp_int);
+        
+        //6. 输出结果为5，说明对paz_int的修改并没有影响到ppp_int
+        System.out.println(ppp_int);
+</code></pre>
+<p>这次我们发现，对paz_int的修改并不会造成ppp_int的变化，因此显然他们并不是共用同一内存地址。<br>
+<strong>int是传值型数据。</strong><br>
+相信细心的朋友还能发现一点，就是操作【2】 int paz_int = ppp_int; 结束后，ppp_int和paz_int二者的内存地址其实是一样的，只是操作【4】执行后才发生了变化。我猜测这是出于对内存空间的节省做出的选择。因为如果如果不修改，paz_int的值和ppp_int的值其实是一致的，与其使用两份内存空间，不如放在同一内存空间中。</p>
+<h2 id="更多">更多</h2>
+<p>上一篇<a href="https://sum19.xyz/post/javazi-fu-chuan-pin-jie/">文章</a>的末尾处，我们发现对String对象的修改，会造成String对象内存空间的变化，与其说是修改倒不如说是建立新的对象，销毁久对象。<br>
+但是上次文章中是存在不严谨的地方，在此换个方法再验证下。</p>
+<pre><code class="language-java">        //1. 获得ppp_int对象的内存位置
+        int address_ppp_0 = System.identityHashCode(ppp_int);
+
+        //2. 再次获得ppp_int对象的内存位置        
+        int address_ppp_1 = System.identityHashCode(ppp_int);
+
+        //3. 【修改ppp_int后】再获得获得ppp_int的内存位置
+        int address_ppp_2 = System.identityHashCode(++ppp_int);
+
+        //4. true 没有发生变化
+        System.out.println(address_ppp_0 == address_ppp_1);
+
+        //5. false 发生了变化
+        System.out.println(address_ppp_0 == address_ppp_2);
+</code></pre>
+<p>在这个案例中，我发现即使只是对同一对象的修改，也会造成这个对象内存地址的变化。<br>
+有没有感觉java语言的有趣😏<img src="https://paz.coding.me/post-images/1573108909866.jpg" alt=""></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">引用数据类型</a></li>
+<li><a href="#%E4%BC%A0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">传值数据类型</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A">更多</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paz.coding.me/post/javazi-fu-chuan-pin-jie">
+              <h3 class="post-title">
+                Java：String回顾
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c7a5c1cea9a9df684691',
+    clientSecret: '3da6389f184072cf8fb4030b2529c12f01c73755',
+    repo: 'pazyork.github.io',
+    owner: 'pazyork',
+    admin: ['pazyork'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  做难事，必有所得 | 
+  <a class="rss" href="https://paz.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

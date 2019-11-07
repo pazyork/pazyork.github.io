@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-05T06:24:26.857Z</updated>
+    <updated>2019-11-07T06:42:03.287Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -10,6 +10,104 @@
     <logo>https://paz.coding.me/images/avatar.png</logo>
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Java: 引用数据类型和传值数据类型]]></title>
+        <id>https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing</id>
+        <link href="https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing">
+        </link>
+        <updated>2019-11-06T02:21:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>java相较于c/c++没有指针的概念，但是不同名称的变量共用同一内存地址在java中是存在的。<br>
+有必要介绍下不同对象赋值时，java中那些数据是作为引用，那些是作为传值。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>java相较于c/c++没有指针的概念，但是不同名称的变量共用同一内存地址在java中是存在的。<br>
+有必要介绍下不同对象赋值时，java中那些数据是作为引用，那些是作为传值。</p>
+<!-- more -->
+<h2 id="引用数据类型">引用数据类型</h2>
+<p>这是一个People类，只有性别一个数据成员</p>
+<pre><code class="language-java">public class People {
+    int sex;    //性别，0为男性，非0为女性
+}
+</code></pre>
+<p>现在我们做一个这个自定义类做一个小实验。</p>
+<pre><code class="language-java">    //////////////////////////////////////////
+    //引用数据类型
+    //////////////////////////////////////////
+
+        // 1
+        //
+        People LiLei =  new People();
+        LiLei.sex=0;
+        People hmm=LiLei;
+
+        // 2
+        //输出true
+        //修改前 韩梅梅和李雷内存地址相同
+        System.out.println(hmm==LiLei);
+
+        // 3
+        //修改韩梅梅性别为1
+        hmm.sex=1;
+
+        // 4
+        //输出仍旧为true
+        //修改后 韩梅梅和李雷内存地址仍旧相同
+        System.out.println(hmm==LiLei);
+
+        // 5
+        // 李雷成功变性为1，但是变性的操作是通过韩梅梅实现的，
+        // 说明韩梅梅的身份其实只是李雷的马甲，它们是同一个人
+        System.out.println(LiLei.sex);
+</code></pre>
+<p>实验中，我们对韩梅梅性别的变动会同时影响到李雷，而且用“==”符号判断的结果任何情况下都为true。<br>
+<strong>说明对于用户定义的类对象的相互赋值，传递的其实是内存地址，而不是其值，是引用行数据类型</strong>。</p>
+<h2 id="传值数据类型">传值数据类型</h2>
+<p>现在我们换成java中的基本数据类型</p>
+<pre><code class="language-java">    //////////////////////////////////////////
+    //传值数据类型
+    //////////////////////////////////////////
+        //1. 对ppp_int对象初始值为5
+        int ppp_int = 5;
+
+        //2. 使用ppp_int对paz_int初始化
+        int paz_int = ppp_int;
+
+        //3. 输出结果为true！！！
+        System.out.println(paz_int == ppp_int);
+        
+        //4. 现在修改paz_int对象
+        paz_int = 4;
+
+        //5. 输出结果变为false
+        System.out.println(paz_int == ppp_int);
+        
+        //6. 输出结果为5，说明对paz_int的修改并没有影响到ppp_int
+        System.out.println(ppp_int);
+</code></pre>
+<p>这次我们发现，对paz_int的修改并不会造成ppp_int的变化，因此显然他们并不是共用同一内存地址。<br>
+<strong>int是传值型数据。</strong><br>
+相信细心的朋友还能发现一点，就是操作【2】 int paz_int = ppp_int; 结束后，ppp_int和paz_int二者的内存地址其实是一样的，只是操作【4】执行后才发生了变化。我猜测这是出于对内存空间的节省做出的选择。因为如果如果不修改，paz_int的值和ppp_int的值其实是一致的，与其使用两份内存空间，不如放在同一内存空间中。</p>
+<h2 id="更多">更多</h2>
+<p>上一篇<a href="https://sum19.xyz/post/javazi-fu-chuan-pin-jie/">文章</a>的末尾处，我们发现对String对象的修改，会造成String对象内存空间的变化，与其说是修改倒不如说是建立新的对象，销毁久对象。<br>
+但是上次文章中是存在不严谨的地方，在此换个方法再验证下。</p>
+<pre><code class="language-java">        //1. 获得ppp_int对象的内存位置
+        int address_ppp_0 = System.identityHashCode(ppp_int);
+
+        //2. 再次获得ppp_int对象的内存位置        
+        int address_ppp_1 = System.identityHashCode(ppp_int);
+
+        //3. 【修改ppp_int后】再获得获得ppp_int的内存位置
+        int address_ppp_2 = System.identityHashCode(++ppp_int);
+
+        //4. true 没有发生变化
+        System.out.println(address_ppp_0 == address_ppp_1);
+
+        //5. false 发生了变化
+        System.out.println(address_ppp_0 == address_ppp_2);
+</code></pre>
+<p>在这个案例中，我发现即使只是对同一对象的修改，也会造成这个对象内存地址的变化。<br>
+有没有感觉java语言的有趣😏<img src="https://paz.coding.me/post-images/1573108909866.jpg" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java：String回顾]]></title>
         <id>https://paz.coding.me/post/javazi-fu-chuan-pin-jie</id>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-07T06:42:24.291Z</updated>
+    <updated>2019-11-07T06:43:08.415Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -105,7 +105,7 @@
         System.out.println(address_ppp_0 == address_ppp_2);
 </code></pre>
 <p>在这个案例中，我发现即使只是对同一对象的修改，也会造成这个对象内存地址的变化。<br>
-有没有感觉java语言的有趣😏<img src="https://paz.coding.me/post-images/1573108909866.jpg" alt=""></p>
+有没有感觉java语言的有趣😏</p>
 ]]></content>
     </entry>
     <entry>

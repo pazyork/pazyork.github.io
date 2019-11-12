@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>会话保持 | PPP的博客</title>
+<title>Tomcat：配置 | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
 <link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1573566913505">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -89,50 +89,73 @@
   </div>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 会话保持
-            </h2> 
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Tomcat：配置
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-11-12
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://paz.coding.me/post-images/tomcatpei-zhi.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>预告：此文章将于本周完成</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
-        <h2 class="post-title">cookie+springboot的简单示范</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2019-09-10
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-          <a href="https://paz.coding.me/tag/xIyQPkXAf" class="post-tag">
-            # 会话保持
-          </a>
-        
-          <a href="https://paz.coding.me/tag/XT4psqshuV" class="post-tag">
-            # cookie
-          </a>
-        
-      </div>
-      
-        <a href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan" class="post-feature-image" style="background-image: url('https://paz.coding.me/post-images/cookie-jian-dan-shi-yong-shi-fan.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        <p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
 
-      </di>
-    </article>
-  
-</div>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing">
+              <h3 class="post-title">
+                Java：引用数据类型和传值数据类型
+              </h3>
+            </a>
+          </div>
+        
 
-        <div class="pagination-container">
-  
-  
-</div>
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'c7a5c1cea9a9df684691',
+    clientSecret: '3da6389f184072cf8fb4030b2529c12f01c73755',
+    repo: 'pazyork.github.io',
+    owner: 'pazyork',
+    admin: ['pazyork'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
         <div class="site-footer">
   做难事，必有所得 | 

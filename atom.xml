@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-07T06:43:36.507Z</updated>
+    <updated>2019-11-12T13:55:17.464Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,7 +11,16 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Java: 引用数据类型和传值数据类型]]></title>
+        <title type="html"><![CDATA[Tomcat：配置]]></title>
+        <id>https://paz.coding.me/post/tomcatpei-zhi</id>
+        <link href="https://paz.coding.me/post/tomcatpei-zhi">
+        </link>
+        <updated>2019-11-12T13:53:51.000Z</updated>
+        <content type="html"><![CDATA[<p>预告：此文章将于本周完成</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java：引用数据类型和传值数据类型]]></title>
         <id>https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing</id>
         <link href="https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing">
         </link>
@@ -59,7 +68,12 @@
         System.out.println(LiLei.sex);
 </code></pre>
 <p>实验中，我们对韩梅梅性别的变动会同时影响到李雷，而且用“==”符号判断的结果任何情况下都为true。<br>
-<strong>说明对于用户定义的类对象的相互赋值，传递的其实是内存地址，而不是其值，是引用行数据类型</strong>。</p>
+<strong>说明对于用户定义的类对象的相互赋值，传递的其实是内存地址，而不是其值，是引用行数据类型</strong>。<br>
+除此之外的引用型数据类型还有：</p>
+<ol>
+<li>数组</li>
+<li>集合</li>
+</ol>
 <h2 id="传值数据类型">传值数据类型</h2>
 <p>现在我们换成java中的基本数据类型</p>
 <pre><code class="language-java">    //////////////////////////////////////////

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-12T13:55:17.464Z</updated>
+    <updated>2019-11-13T02:28:01.644Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
@@ -11,12 +11,109 @@
     <icon>https://paz.coding.me/favicon.ico</icon>
     <rights>All rights reserved 2019, PPP的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Tomcat：配置]]></title>
+        <title type="html"><![CDATA[Tomcat：server.xml]]></title>
         <id>https://paz.coding.me/post/tomcatpei-zhi</id>
         <link href="https://paz.coding.me/post/tomcatpei-zhi">
         </link>
         <updated>2019-11-12T13:53:51.000Z</updated>
-        <content type="html"><![CDATA[<p>预告：此文章将于本周完成</p>
+        <summary type="html"><![CDATA[<p><em>最近在做一个项目，有三个组一起做，实际上做成了三个小项目。做到上周，需要做成War部署到Tomcat上时，出现了一些问题，导致了险些通宵的结果，为了避免再遇到这种情况，决定好好了解下Tomcat的配置。</em></p>
+]]></summary>
+        <content type="html"><![CDATA[<p><em>最近在做一个项目，有三个组一起做，实际上做成了三个小项目。做到上周，需要做成War部署到Tomcat上时，出现了一些问题，导致了险些通宵的结果，为了避免再遇到这种情况，决定好好了解下Tomcat的配置。</em></p>
+<!-- more -->
+<p>首先，我写了一份server.xml的主要标签的中文注解，有不少内容参考的是<a href="https://www.cnblogs.com/kismetv/p/7228274.html">这篇文章</a>,在此对原作者表示感谢。</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+
+&lt;!-- Server元素为根元素：shutdown属性表示关闭Server的指令；port属性表示Server接收shutdown指令的端口号，设为-1可以禁掉该端口。 --&gt;
+&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot; port=&quot;-1&quot;&gt;
+
+  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
+  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
+  &lt;GlobalNamingResources&gt;
+    &lt;Resource name=&quot;UserDatabase&quot; auth=&quot;Container&quot;
+              type=&quot;org.apache.catalina.UserDatabase&quot;
+              description=&quot;User database that can be updated and saved&quot;
+              factory=&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;
+              pathname=&quot;conf/tomcat-users.xml&quot; /&gt;
+  &lt;/GlobalNamingResources&gt;
+
+  &lt;!-- Connector和Engine元素的集合，一个Service下可以有多个Connector元素 但是只能有一个Engine元素 --&gt;
+  &lt;Service name=&quot;Catalina&quot;&gt;
+
+	&lt;!-- 1.配置客户端在8080端口上通过Http协议访问Tomcat，超时时间为20秒。 --&gt;
+	&lt;!-- 2.如果资源被强制要求使用https访问，则会被重定向到8443端口 --&gt;
+    &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;8443&quot; /&gt;
+    &lt;!-- 1.配置客户端在8009端口上通过AJP协议访问Tomcat。 --&gt;
+	&lt;!-- 2.JAP协议负责与其他Http服务器建立联系，比如：
+	Tomcat可以作为JSP/Servlet的容器，但是处理静态资源文件Apache更快
+	因此出现需要两个服务器集成的情况时，就可以使用该协议 --&gt;
+    &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;
+
+
+	
+	&lt;!-- 1.Engine组件从一个或多个Connector中接收请求并处理，并将完成的响应返回给Connector，最终传递给客户端。 --&gt;
+	&lt;!-- 2.
+		a.	name属性用于日志和错误信息，在整个Server中应该唯一。
+		b.	defaultHost属性指定了默认的host名称，当发往本机的请求指定的host名称不存在时，一律使用defaultHost指定的host进行处理。
+	因此，defaultHost的值，必须与Engine中的一个Host组件的name属性值匹配
+    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt; --&gt;
+	
+      &lt;Realm className=&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;
+        &lt;Realm className=&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;
+               resourceName=&quot;UserDatabase&quot;/&gt;
+      &lt;/Realm&gt;
+	   &lt;!-- 1.Engine组件中可以内嵌1个或多个Host组件，每个Host组件代表Engine中的一个虚拟主机。 --&gt;
+	   &lt;!-- 2.Host虚拟主机的作用，是运行多个Web应用（一个Context代表一个Web应用），并负责安装、展开、启动和结束每个Web应用。 --&gt;
+	   &lt;!-- 3.Host组件代表的虚拟主机，对应了服务器中一个网络名实体(如”www.test.com”，或IP地址”116.25.25.25”)； --&gt;
+	   &lt;!-- 4.客户端通常使用主机名来标识它们希望连接的服务器；该主机名也会包含在HTTP请求头中。
+	   Tomcat从HTTP头中提取出主机名，寻找名称匹配的主机。如果没有匹配，请求将发送至默认主机。
+	   因此默认主机不需要是在DNS服务器中注册的网络名，因为任何与所有Host名称不匹配的请求，都会路由至默认主机。 --&gt;
+	   &lt;!-- 5.
+		a.	name指定虚拟主机的主机名
+		b.	unpackWARs指定了是否将代表Web应用的WAR文件解压；如果为true，通过解压后的文件结构运行该Web应用，如果为false，直接使用WAR文件运行Web应用
+		c.	deployOnStartup（自动部署）为true时：Tomcat在启动时检查Web应用，且检测到的所有Web应用视作新应用
+		d.	autoDeploy（自动部署）时：Tomcat在运行时定期检查新的Web应用或Web应用的更新
+		e.	appBase相对路径，代表Tomcat根目录下webapps文件夹。默认值是webapps
+		f.	xmlBase 指定Web应用的XML配置文件所在的目录，默认值为conf/engine_name/host_name --&gt;
+      &lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;
+            unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
+
+        &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+               prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
+               pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
+			   
+		&lt;!-- 1.Context元素代表在特定虚拟主机上运行的一个Web应用。 --&gt;
+		&lt;!-- 2.Context是Host的子容器，每个Host中可以定义任意多的Context元素 --&gt;
+		&lt;!-- 3.没有出现Context元素的配置:Tomcat开启了自动部署，Web应用没有在server.xml中配置静态部署，而是由Tomcat通过特定的规则自动部署 --&gt;
+		&lt;!-- 4.
+			a.	docBase指定了该Web应用使用的WAR包路径，在自动部署场景下，docBase不在appBase目录中，才需要指定。
+				如果docBase指定的WAR包或应用目录就在appBase中，则不需要指定。
+			b.	path指定了访问该Web应用的上下文路径，当请求到来时，Tomcat根据Web应用的 path属性与URI的匹配程度来选择Web应用处理相应请求
+				例如，Web应用app1的path属性是”/app1”，Web应用app2的path属性是”/app2”，那么请求/app1/index.html会交由app1来处理；而请求/app2/index.html会交由app2来处理。
+				path属性为””，那么这个Context是虚拟主机的默认Web应用；当请求的uri与所有的path都不匹配时，使用该默认Web应用来处理.
+				
+				在自动部署场景下，不能指定path属性，path属性由配置文件的文件名、WAR文件的文件名或应用目录的名称自动推导出来。
+				如扫描Web应用时，发现了xmlBase目录下的app1.xml，或appBase目录下的app1.WAR或app1应用目录，则该Web应用的path属性是”app1”。
+				如果名称不是app1而是ROOT，则该Web应用是虚拟主机默认的Web应用，此时path属性推导为””
+				
+				静态部署时，可以显式指定path属性，但是仍然受到了严格的限制：
+				只有当自动部署完全关闭(deployOnStartup和autoDeploy都为false)或docBase不在appBase中时，才可以设置path属性
+			c.	reloadable属性指示tomcat是否在运行时监控在WEB-INF/classes和WEB-INF/lib目录下class文件的改动。如果值为true，那么当class文件改动时，会触发Web应用的重新加载。
+				在开发环境下，reloadable设置为true便于调试；
+				但是在生产环境中设置为true会给服务器带来性能压力，因此reloadable参数的默认值为false。 --&gt;
+		&lt;Context path=&quot;test&quot; docBase=&quot;D:/xxx/yyy/zzz&quot; reloadable=&quot;true&quot; /&gt;
+
+      &lt;/Host&gt;
+    &lt;/Engine&gt;
+  &lt;/Service&gt;
+&lt;/Server&gt;
+
+</code></pre>
 ]]></content>
     </entry>
     <entry>

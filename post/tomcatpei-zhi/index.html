@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tomcat：server.xml | PPP的博客</title>
 <meta name="description" content="望远能知风浪小，凌空始觉海波平" />
-<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1573612001321">
+<link rel="shortcut icon" href="https://paz.coding.me/favicon.ico?v=1573614117390">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://paz.coding.me/styles/main.css">
@@ -29,7 +29,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://paz.coding.me">
-  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1573612001321" alt="">
+  <img class="avatar" src="https://paz.coding.me/images/avatar.png?v=1573614117390" alt="">
   </a>
   <h1 class="site-title">
     PPP的博客
@@ -99,7 +99,7 @@
                 2019-11-12
               </span>
               <span>
-                8 min read
+                9 min read
               </span>
               
             </div>
@@ -116,12 +116,14 @@
 
 &lt;!-- Server元素为根元素：shutdown属性表示关闭Server的指令；port属性表示Server接收shutdown指令的端口号，设为-1可以禁掉该端口。 --&gt;
 &lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot; port=&quot;-1&quot;&gt;
-
+  &lt;!-- Listener(即监听器)定义的组件，可以在特定事件发生时执行特定的操作；被监听的事件通常是Tomcat的启动和停止。 --&gt;
   &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
   &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
   &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
   &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
   &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
+
+  &lt;!-- GlobalNamingResources元素定义了全局资源，通过配置可以看出，该配置是通过读取$TOMCAT_HOME/ conf/tomcat-users.xml实现的。 --&gt;
   &lt;GlobalNamingResources&gt;
     &lt;Resource name=&quot;UserDatabase&quot; auth=&quot;Container&quot;
               type=&quot;org.apache.catalina.UserDatabase&quot;
@@ -150,9 +152,10 @@
 	&lt;!-- 2.
 		a.	name属性用于日志和错误信息，在整个Server中应该唯一。
 		b.	defaultHost属性指定了默认的host名称，当发往本机的请求指定的host名称不存在时，一律使用defaultHost指定的host进行处理。
-	因此，defaultHost的值，必须与Engine中的一个Host组件的name属性值匹配
-    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt; --&gt;
-	
+	因此，defaultHost的值，必须与Engine中的一个Host组件的name属性值匹配--&gt;
+    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt; 
+
+	  &lt;!-- 略：Realm提供了一种用户密码与web应用的映射关系，从而达到角色安全管理的作用 --&gt;
       &lt;Realm className=&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;
         &lt;Realm className=&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;
                resourceName=&quot;UserDatabase&quot;/&gt;
@@ -172,7 +175,15 @@
 		f.	xmlBase 指定Web应用的XML配置文件所在的目录，默认值为conf/engine_name/host_name --&gt;
       &lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;
             unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
-
+		&lt;!--1.	 单词Valve的意思是“阀门”，在Tomcat中代表了请求处理流水线上的一个组件；Valve可以与Tomcat的容器(Engine、Host或Context)关联。 --&gt;
+		&lt;!--2.	 AccessLogValve的作用是通过日志记录其所在的容器中处理的所有请求，在本例中，Valve放在Host下，便可以记录该Host处理的所有请求。
+			AccessLogValve记录的日志就是访问日志，每天的请求会写到一个日志文件里。 --&gt;
+		&lt;!--3.	
+				a. className：规定了Valve的类型，是最重要的属性；本例中，通过该属性规定了这是一个AccessLogValve。
+				b. directory：指定日志存储的位置，本例中，日志存储在$TOMCAT_HOME/logs目录下。
+				c. prefix：指定了日志文件的前缀。
+				d. suffix：指定了日志文件的后缀。通过directory、prefix和suffix的配置，在$TOMCAT_HOME/logs目录
+				e. pattern：指定记录日志的格式 --&gt;
         &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
                prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
                pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
@@ -202,7 +213,6 @@
     &lt;/Engine&gt;
   &lt;/Service&gt;
 &lt;/Server&gt;
-
 </code></pre>
 
               </div>

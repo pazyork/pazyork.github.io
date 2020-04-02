@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://paz.coding.me</id>
     <title>PPP的博客</title>
-    <updated>2019-11-21T03:08:45.916Z</updated>
+    <updated>2020-04-02T03:51:15.098Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://paz.coding.me"/>
     <link rel="self" href="https://paz.coding.me/atom.xml"/>
     <subtitle>望远能知风浪小，凌空始觉海波平</subtitle>
     <logo>https://paz.coding.me/images/avatar.png</logo>
     <icon>https://paz.coding.me/favicon.ico</icon>
-    <rights>All rights reserved 2019, PPP的博客</rights>
+    <rights>All rights reserved 2020, PPP的博客</rights>
     <entry>
         <title type="html"><![CDATA[Tomcat：server.xml]]></title>
-        <id>https://paz.coding.me/post/tomcatpei-zhi</id>
-        <link href="https://paz.coding.me/post/tomcatpei-zhi">
+        <id>https://paz.coding.me/post/tomcatpei-zhi/</id>
+        <link href="https://paz.coding.me/post/tomcatpei-zhi/">
         </link>
         <updated>2019-11-12T13:53:51.000Z</updated>
         <summary type="html"><![CDATA[<p><em>最近在做一个项目，有三个组一起做，实际上做成了三个小项目。做到上周，需要做成War部署到Tomcat上时，出现了一些问题，导致了险些通宵的结果，为了避免再遇到这种情况，决定好好了解下Tomcat的配置。</em></p>
@@ -128,8 +128,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Java：引用数据类型和传值数据类型]]></title>
-        <id>https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing</id>
-        <link href="https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing">
+        <id>https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing/</id>
+        <link href="https://paz.coding.me/post/java-yin-yong-shu-ju-lei-xing-he-chuan-zhi-shu-ju-lei-xing/">
         </link>
         <updated>2019-11-06T02:21:10.000Z</updated>
         <summary type="html"><![CDATA[<p>java相较于c/c++没有指针的概念，但是不同名称的变量共用同一内存地址在java中是存在的。<br>
@@ -231,8 +231,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Java：String回顾]]></title>
-        <id>https://paz.coding.me/post/javazi-fu-chuan-pin-jie</id>
-        <link href="https://paz.coding.me/post/javazi-fu-chuan-pin-jie">
+        <id>https://paz.coding.me/post/javazi-fu-chuan-pin-jie/</id>
+        <link href="https://paz.coding.me/post/javazi-fu-chuan-pin-jie/">
         </link>
         <updated>2019-11-04T12:51:16.000Z</updated>
         <content type="html"><![CDATA[<h2 id="通用">通用</h2>
@@ -378,15 +378,15 @@ public class BufferString {
 <h4 id="stringbuilder相较于和stringbuffer">StringBuilder相较于和StringBuffer</h4>
 <ol>
 <li>后者是进程安全的，后者几乎所有的非静态方法都带有 synchronized 关键字<br>
-<img src="https://paz.coding.me/post-images/1572934729425.png" alt=""><br>
-<img src="https://paz.coding.me/post-images/1572934738264.png" alt=""></li>
+<img src="https://paz.coding.me/post-images/1572934729425.png" alt="" loading="lazy"><br>
+<img src="https://paz.coding.me/post-images/1572934738264.png" alt="" loading="lazy"></li>
 </ol>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Mybatis-文件]]></title>
-        <id>https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong</id>
-        <link href="https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong">
+        <id>https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong/</id>
+        <link href="https://paz.coding.me/post/mybatisge-wen-jian-zuo-yong/">
         </link>
         <updated>2019-10-25T02:47:11.000Z</updated>
         <summary type="html"><![CDATA[<p>简单介绍下Maven项目中与Mybatis相关的各文件的作用。</p>
@@ -549,9 +549,9 @@ id属性：当前名称空间下的statement的唯一标识(必须属性)；<br>
 parameterType：传入的参数类型，可以省略。<br>
 标签内部：具体的sql语句。</p>
 <h3 id="42-resultmap">4.2 resultMap</h3>
-<p><img src="https://paz.coding.me/post-images/1572096899494.png" alt=""><br>
-<img src="https://paz.coding.me/post-images/1572096906587.png" alt=""><br>
-<img src="https://paz.coding.me/post-images/1572096912659.png" alt=""></p>
+<p><img src="https://paz.coding.me/post-images/1572096899494.png" alt="" loading="lazy"><br>
+<img src="https://paz.coding.me/post-images/1572096906587.png" alt="" loading="lazy"><br>
+<img src="https://paz.coding.me/post-images/1572096912659.png" alt="" loading="lazy"></p>
 <h3 id="43-sql片段">4.3 sql片段</h3>
 <p>过于繁琐，在此略过</p>
 <h2 id="5-xxxmapperjava">5. xxxMapper.java</h2>
@@ -577,8 +577,8 @@ FireconCartMapper.java文件</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[cookie+springboot的简单示范]]></title>
-        <id>https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan</id>
-        <link href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan">
+        <id>https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan/</id>
+        <link href="https://paz.coding.me/post/cookie-jian-dan-shi-yong-shi-fan/">
         </link>
         <updated>2019-09-10T15:54:43.000Z</updated>
         <summary type="html"><![CDATA[<p><em>在web项目开发中，会话维持是被经常使用到的技术。但是现在有的博客里有和springboot结合的比较少，有完整代码的就更难找到了，于是最近我会抽时间写下与之相关的技术。</em></p>
@@ -614,7 +614,7 @@ FireconCartMapper.java文件</p>
 <h3 id="上手">上手</h3>
 <h4 id="使用idea建立springboot项目">使用idea建立springboot项目</h4>
 <p>一路点下去即可：<br>
-<img src="https://paz.coding.me/post-images/1568171060424.png" alt=""></p>
+<img src="https://paz.coding.me/post-images/1568171060424.png" alt="" loading="lazy"></p>
 <h4 id="在pomxml中导入依赖">在pom.xml中导入依赖</h4>
 <pre><code class="language-xml"> &lt;dependency&gt;
             &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
@@ -648,7 +648,7 @@ spring.mvc.static-path-pattern=/static/**
 </code></pre>
 <h4 id="建立indexhtml和indexjs文件">建立index.html和index.js文件</h4>
 <p>项目目录为：<br>
-<img src="https://paz.coding.me/post-images/1568171689524.png" alt=""></p>
+<img src="https://paz.coding.me/post-images/1568171689524.png" alt="" loading="lazy"></p>
 <pre><code class="language-javascript">//向后台服务器发送请求cookie的请求
 function setCookie() {
     $.ajax({
@@ -733,11 +733,11 @@ public class MainController {
 }
 </code></pre>
 <h3 id="测试">测试</h3>
-<figure data-type="image" tabindex="1"><img src="https://paz.coding.me/post-images/1568177243936.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://paz.coding.me/post-images/1568177243936.png" alt="" loading="lazy"></figure>
 <center>设置cookie</center>
-<figure data-type="image" tabindex="2"><img src="https://paz.coding.me/post-images/1568177455911.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://paz.coding.me/post-images/1568177455911.png" alt="" loading="lazy"></figure>
 <center>可以看到浏览器中已经保存了cookie</center>
-<figure data-type="image" tabindex="3"><img src="https://paz.coding.me/post-images/1568177627756.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://paz.coding.me/post-images/1568177627756.png" alt="" loading="lazy"></figure>
 <center>后台也拿到了cookie，并作为返回值，返回给了前台</center>
 <h3 id="参考感谢">参考&amp;感谢</h3>
 <p><a href="https://blog.csdn.net/WJLONG_123/article/details/78246995">cookie属性及有效期的设置</a></p>
@@ -748,8 +748,8 @@ public class MainController {
     </entry>
     <entry>
         <title type="html"><![CDATA[前后端分离中的Rest&Restful架构]]></title>
-        <id>https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou</id>
-        <link href="https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou">
+        <id>https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou/</id>
+        <link href="https://paz.coding.me/post/qian-hou-duan-fen-chi-zhong-de-rest-he-restful-jia-gou/">
         </link>
         <updated>2019-09-08T14:31:43.000Z</updated>
         <summary type="html"><![CDATA[<p><em>----最近在接触spring cloud的时候，经常会看见Rest&amp;Restful的字眼，又对这两个词完全没有印象，于是去了解了下，现在我们从传统API的缺点开始讲起</em></p>
@@ -842,8 +842,8 @@ URL代表着统一资源唯一定位符，是名词性质的，不应该带有�
     </entry>
     <entry>
         <title type="html"><![CDATA[以往]]></title>
-        <id>https://paz.coding.me/post/yi-wang</id>
-        <link href="https://paz.coding.me/post/yi-wang">
+        <id>https://paz.coding.me/post/yi-wang/</id>
+        <link href="https://paz.coding.me/post/yi-wang/">
         </link>
         <updated>2019-09-08T11:56:47.000Z</updated>
         <summary type="html"><![CDATA[<p>在此留下以前博客的地址：<br>
